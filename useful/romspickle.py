@@ -266,6 +266,33 @@ def uvw2rho_3d(ufield,vfield,wfield):
 
     return ur_field,vr_field,wr_field
 
+
+
+### FUNCTION UVW2RHO_4D ##################################################
+def uvw2rho_4d(ufield,vfield,wfield):
+
+    """
+    ################################################################
+    #
+    #   compute the values of u,v at t,s points ...
+    #
+    #   adptation of the w matrix
+    #
+    #   Dante C Napolitano, LaDO IOUSP
+    #   dante.napolitano@usp.br (Jan 2018)
+    ################################################################
+    """
+
+    ur_field = 0.5 * (ufield[:,:,:,:-1] + ufield[:,:,:,1:])
+    ur_field = ur_field[:,:,1:-1,:]
+    vr_field = 0.5 * (vfield[:,:,:-1,:] + vfield[:,:,1:,:])
+    vr_field = vr_field[:,:,:,1:-1]
+
+    wr_field = wfield[:,:,1:-1,1:-1]
+
+    return ur_field,vr_field,wr_field
+
+
 ### FUNCTION TS2RHO_3D ##################################################
 def ts2rho_3d(tfield,sfield):
 
