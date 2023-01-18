@@ -1,28 +1,17 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
 """
 Created on Mon May 28 15:30:38 2018
 
 @author: dantecn
 """
 
-# save pickle from netcdf files
 import numpy as np
-
-#from OceanLab import *
 import numpy as np
 import pandas as pd
 import os
-#import romslab
-
 from collections import OrderedDict
-# from romslab import zlevs
 from glob import glob
-#from OceanLab import utils
 from netCDF4 import Dataset
-# from netcdftime import utime
 from datetime import datetime
-
 import multiprocessing as mp
 
 #from zlevs.py
