@@ -503,6 +503,40 @@ tst=pool.map(romspickle,lista)
 
 print('saved year %s - %s'%(year,prop.keys()[p]))
 '''
+
+
+def spec_ogive(spec,kr):
+    
+    Ogive_Kr=np.array(kr)
+    # Middle Value Wavenumber position for plot
+    Ogive_Krx=(Ogive_Kr[:-1]+Ogive_Kr[1:])/2
+    # dK=np.diff(Ogive_Kr)[0]
+    
+    #Flipped Integration in wavenumber and then flipped again
+    Ogive_inv=integ.cumtrapz(y=spec[::-1],x=Ogive_Kr[::-1]);
+    Ogive_Spec=-Ogive_inv[::-1];
+
+
+    return Ogive_Krx,Ogive_Spec
+
+def ogive(deltaf,G):
+   '''
+   ogive(deltaf,G): use very simple integration to calculate the ogive 
+   from a spectrum G with data sampled at frequency deltaf.
+   2017-01-10T09:40:31 going back to a single frequency for Os and Gs
+   '''
+# --------------------------------------------------------------------
+# 2016-10-08T09:47:12 re-created with numpy
+# --------------------------------------------------------------------
+   M1 = len(G)
+   Og = np.zeros(M1,float)
+   Og[0:M1] = np.cumsum(np.flipud(G[0:M1]))
+   Og *= deltaf
+   Og = np.flipud(Og)
+   return Og
+
+
+
 # end of loop
 # hãhãhãhãhãhã
 #execfile('/home/dantecn/Documents/Utils/inutils/playxinho.py')
