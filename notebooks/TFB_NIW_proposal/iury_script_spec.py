@@ -82,7 +82,7 @@ for sim in simulations:
                     print("Parseval's theorem is satisfied.")
                     check = False
             
-            power_spectrum = power_spectrum.sel(freq_time=slice(0, FREQ_MAX)) * 2  # Scale spectrum
+            power_spectrum = power_spectrum.sel(freq_time=slice(0, FREQ_MAX)) ** 2  # Scale spectrum
             
             # Select the relevant wavenumber range up to K_MAX for analysis
             power_spectrum = power_spectrum.sel(K_bin = slice(0, K_MAX))
